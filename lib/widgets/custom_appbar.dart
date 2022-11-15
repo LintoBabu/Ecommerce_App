@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
   const CustomAppBar({
-    Key? key, required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -14,16 +15,24 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
         elevation: 0,
         title: Container(
           color: Colors.black,
-          child: Text(title,style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white,fontFamily: 'Avenir'),),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white)
+          ),
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 10,
           ),
         ),
         iconTheme: IconThemeData(color: Colors.black),
-        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.favorite))]
-
-    );
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/wishlist');
+            },
+            icon: Icon(Icons.favorite),
+          )
+        ]);
   }
 
   @override
